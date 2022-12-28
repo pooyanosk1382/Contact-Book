@@ -1,16 +1,53 @@
-# This is a sample Python script.
+import os
+from msvcrt import getche
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from colorama import Fore
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+contacts = {}
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def addContact():
+    f = open("contact.txt", 'a')
+    print(Fore.YELLOW + "enter the name : ", end="")
+    name = input()
+    print(Fore.YELLOW + "enter the phone number : ", end="")
+    phoneNumber = input()
+    f.write(name)
+    f.write(" : ")
+    f.write(phoneNumber)
+    f.write("\n")
+    print(Fore.LIGHTGREEN_EX + "contact added successfully")
+    print(Fore.LIGHTGREEN_EX + "press any key to exit from here")
+    c = getche()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def showContact():
+    f = open("contact.txt", 'r')
+    contact = []
+    for line in f:
+        contact.append(line)
+    for i in contact:
+        temp = i.split(" : ")
+        print(Fore.BLUE + temp[0], end="")
+        print(" : ", end="")
+        print(Fore.LIGHTMAGENTA_EX + temp[1])
+    print(Fore.LIGHTGREEN_EX + "press any key to exit from here")
+    c = getche()
+
+
+while True:
+    os.system("cls")
+    print(Fore.LIGHTWHITE_EX + "             welcome            ")
+    print(Fore.LIGHTWHITE_EX + "          1.add contact         ")
+    print(Fore.LIGHTWHITE_EX + "         2.show contacts        ")
+    print(Fore.LIGHTWHITE_EX + "             3.exit             ")
+    ch = input()
+    if ch == '1':
+        addContact()
+    elif ch == '2':
+        showContact()
+    elif ch == '3':
+        exit()
+    else:
+        print(Fore.RED + "invalid input")
+        c = getche()
