@@ -21,12 +21,12 @@ def addContact():
         tempName.append(temp1[0])
         tempNum.append(temp1[1])
     for i in range(len(tempName)):
-        if tempName[i] == name:
+        if tempName[i].__contains__(name) and name.__contains__(tempName[i]):
             print(Fore.RED + "This name is already taken")
             print("press any key to return")
             c = getche()
             return
-        elif tempNum[i].__contains__(phoneNumber) and phoneNumber.__contains__(tempNum[i]):
+        elif tempNum[i].__contains__(phoneNumber):
             print(Fore.RED + "This number is already taken")
             print("press any key to return")
             c = getche()
