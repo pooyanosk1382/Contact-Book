@@ -7,11 +7,30 @@ contacts = {}
 
 
 def addContact():
-    f = open("contact.txt", 'a')
+    f = open("contact.txt", 'r')
     print(Fore.YELLOW + "enter the name : ", end="")
     name = input()
     print(Fore.YELLOW + "enter the phone number : ", end="")
     phoneNumber = input()
+    tempName = []
+    tempNum = []
+    for i in f:
+        temp1 = i.split(" : ")
+        if len(temp1) <= 1:
+            continue
+        tempName.append(temp1[0])
+        tempNum.append(temp1[1])
+    for i in range(len(tempName)):
+        if tempName[i] == name:
+            print(Fore.RED + "This name is already taken")
+            print("press any key to return")
+            c = getche()
+            return
+        elif tempNum[i] == phoneNumber:
+            print(Fore.RED + "This number is already taken")
+            return
+    f.close()
+    f = open("contact.txt", 'a')
     f.write(name)
     f.write(" : ")
     f.write(phoneNumber)
